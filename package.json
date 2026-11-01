@@ -1,0 +1,40 @@
+{
+  "name": "dsh-frontend-utopia",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Utopia —— 零依赖、Win7 可用、TypeScript 原生的超融合前端框架。告别前端的碎片化时代，把所有的拉，全变成夯。",
+  "keywords": [
+    "utopia",
+    "frontend",
+    "framework",
+    "state-management",
+    "fetch",
+    "swr",
+    "ui-primitives",
+    "css-variables",
+    "cross-platform",
+    "esbuild-wasm",
+    "zero-dependency",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "doujiaozh",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "build:test": "tsc -p tsconfig.test.json",
+    "test": "npm run build && npm run build:test && node scripts/test.mjs",
+    "bundle": "node scripts/bundle.mjs",
+    "example": "node scripts/serve-example.mjs",
+    "clean": "node scripts/clean.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/utils" },
+    { "path": "packages/state" },
+    { "path": "packages/request" },
+    { "path": "packages/ui" }
+  ]
+}

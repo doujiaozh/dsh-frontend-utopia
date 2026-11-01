@@ -1,0 +1,23 @@
+{
+  "name": "@utopia/state",
+  "version": "0.1.0",
+  "description": "utopia_state —— 一个 createState 终结状态管理：Proxy 响应式 + 内建时间旅行 DevTools，框架无关",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./react": { "types": "./dist/adapters/react.d.ts", "import": "./dist/adapters/react.js" },
+    "./vue": { "types": "./dist/adapters/vue.d.ts", "import": "./dist/adapters/vue.js" }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  }
+}

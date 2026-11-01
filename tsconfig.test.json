@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "incremental": false,
+    "rootDir": ".",
+    "outDir": "dist-test"
+  },
+  "include": [
+    "scripts/utest.ts",
+    "scripts/wg-dom.ts",
+    "packages/*/test/**/*.ts"
+  ]
+}

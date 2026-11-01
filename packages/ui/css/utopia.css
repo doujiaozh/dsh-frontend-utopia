@@ -1,0 +1,201 @@
+/* ============================================================
+ * Utopia UI —— 无引擎样式层
+ * 全部组件仅消费 CSS Variables（由主题 token 写入）。
+ * 引入方式：import '@utopia/ui/css'  （或手动 <link>）
+ * ============================================================ */
+
+/* 基础重置（最小化） */
+.u-btn, .u-input, .u-switch, .u-checkbox input, .u-table, .u-toast {
+  font-family: var(--u-font);
+}
+
+/* ---------------------------------------------------------------- Button */
+.u-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--u-space-2);
+  border: 1px solid var(--u-border);
+  border-radius: var(--u-radius-md);
+  padding: 0 var(--u-space-4);
+  height: 36px;
+  line-height: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--u-text);
+  background: var(--u-surface);
+  cursor: pointer;
+  transition: filter var(--u-transition), background var(--u-transition), border-color var(--u-transition);
+  user-select: none;
+}
+.u-btn:hover:not(:disabled) { background: var(--u-surface-hover); }
+.u-btn:active:not(:disabled) { filter: brightness(0.96); }
+.u-btn:focus-visible { outline: 2px solid var(--u-primary); outline-offset: 2px; }
+.u-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.u-btn-sm { height: 28px; padding: 0 var(--u-space-3); font-size: 12px; }
+.u-btn-lg { height: 44px; padding: 0 var(--u-space-5); font-size: 16px; }
+.u-btn-block { display: flex; width: 100%; }
+.u-btn-primary { background: var(--u-primary); border-color: var(--u-primary); color: var(--u-primary-fg); }
+.u-btn-primary:hover:not(:disabled) { background: var(--u-primary); filter: brightness(1.08); }
+.u-btn-ghost { background: transparent; border-color: transparent; }
+.u-btn-ghost:hover:not(:disabled) { background: var(--u-primary-soft); }
+.u-btn-danger { background: var(--u-danger); border-color: var(--u-danger); color: #fff; }
+.u-btn-subtle { background: var(--u-surface-strong); }
+
+.u-btn-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: u-spin 0.7s linear infinite;
+}
+@keyframes u-spin { to { transform: rotate(360deg); } }
+
+/* ---------------------------------------------------------------- Field/Input */
+.u-field { display: flex; flex-direction: column; gap: var(--u-space-2); }
+.u-label { font-size: 13px; font-weight: 600; color: var(--u-text-muted); }
+.u-field-hint { font-size: 12px; color: var(--u-text-muted); }
+.u-field-error { font-size: 12px; color: var(--u-danger); }
+.u-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--u-border);
+  border-radius: var(--u-radius-md);
+  background: var(--u-surface);
+  color: var(--u-text);
+  padding: 8px var(--u-space-3);
+  font-size: 14px;
+  transition: border-color var(--u-transition), box-shadow var(--u-transition);
+  outline: none;
+}
+.u-input::placeholder { color: var(--u-text-muted); opacity: 0.7; }
+.u-input:focus { border-color: var(--u-primary); box-shadow: 0 0 0 3px var(--u-focus); }
+.u-input:disabled { opacity: 0.5; cursor: not-allowed; }
+.u-input-error { border-color: var(--u-danger); }
+textarea.u-input { min-height: 88px; resize: vertical; }
+
+/* ---------------------------------------------------------------- Switch */
+.u-switch {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  border-radius: var(--u-radius-full);
+  border: 1px solid var(--u-border);
+  background: var(--u-surface-strong);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--u-transition);
+}
+.u-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--u-surface);
+  box-shadow: var(--u-shadow-sm);
+  transition: transform var(--u-transition);
+}
+.u-switch[aria-checked='true'] { background: var(--u-primary); border-color: var(--u-primary); }
+.u-switch[aria-checked='true']::after { transform: translateX(18px); }
+.u-switch:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------------------------------------------------------------- Checkbox */
+.u-checkbox { display: inline-flex; align-items: center; gap: var(--u-space-2); cursor: pointer; user-select: none; }
+.u-checkbox input { position: absolute; opacity: 0; width: 0; height: 0; }
+.u-checkbox-box {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--u-radius-sm);
+  border: 1px solid var(--u-border-strong);
+  background: var(--u-surface);
+  display: inline-grid;
+  place-content: center;
+  transition: background var(--u-transition), border-color var(--u-transition);
+}
+.u-checkbox-box::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: solid var(--u-primary-fg);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform var(--u-transition);
+}
+.u-checkbox input:checked + .u-checkbox-box { background: var(--u-primary); border-color: var(--u-primary); }
+.u-checkbox input:checked + .u-checkbox-box::after { transform: rotate(45deg) scale(1); }
+.u-checkbox input:focus-visible + .u-checkbox-box { outline: 2px solid var(--u-primary); outline-offset: 2px; }
+.u-checkbox-disabled { opacity: 0.5; cursor: not-allowed; }
+.u-checkbox-label { font-size: 14px; color: var(--u-text); }
+
+/* ---------------------------------------------------------------- Table */
+.u-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: var(--u-surface);
+  border-radius: var(--u-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--u-shadow-sm);
+}
+.u-table-head {
+  text-align: left;
+  padding: var(--u-space-3) var(--u-space-4);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--u-text-muted);
+  background: var(--u-surface-strong);
+  border-bottom: 1px solid var(--u-border);
+  white-space: nowrap;
+}
+.u-table-cell { padding: var(--u-space-3) var(--u-space-4); border-bottom: 1px solid var(--u-border); color: var(--u-text); }
+.u-table-row-striped { background: color-mix(in srgb, var(--u-surface-strong) 46%, var(--u-surface)); }
+.u-table tbody tr:hover { background: var(--u-primary-soft); }
+.u-table-empty { text-align: center; color: var(--u-text-muted); padding: var(--u-space-6) 0; }
+.u-table-sortable { cursor: pointer; user-select: none; }
+.u-table-sort-hint::after { content: '↕'; margin-left: var(--u-space-1); opacity: 0.5; }
+
+/* ---------------------------------------------------------------- Toast */
+.u-toast-host {
+  position: fixed;
+  right: var(--u-space-4);
+  bottom: var(--u-space-4);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--u-space-2);
+  pointer-events: none;
+}
+.u-toast {
+  pointer-events: auto;
+  min-width: 220px;
+  max-width: 360px;
+  padding: var(--u-space-3) var(--u-space-4);
+  border-radius: var(--u-radius-lg);
+  background: var(--u-surface);
+  color: var(--u-text);
+  border: 1px solid var(--u-border);
+  box-shadow: var(--u-shadow-lg);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--u-transition), transform var(--u-transition);
+  border-left: 4px solid var(--u-info);
+}
+.u-toast-in { opacity: 1; transform: translateY(0); }
+.u-toast-success { border-left-color: var(--u-success); }
+.u-toast-error { border-left-color: var(--u-danger); }
+.u-toast-warning { border-left-color: var(--u-warning); }
+
+/* ---------------------------------------------------------------- 液态玻璃主题 */
+[data-u-theme='glass'] .u-toast,
+[data-u-theme='glass'] .u-table,
+[data-u-theme='glass'] .u-input,
+[data-u-theme='glass'] .u-btn-primary,
+[data-u-theme='glass'] .u-switch {
+  backdrop-filter: blur(var(--u-glass-blur));
+  -webkit-backdrop-filter: blur(var(--u-glass-blur));
+}
