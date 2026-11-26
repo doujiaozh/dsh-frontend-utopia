@@ -204,6 +204,12 @@ dsh-frontend-utopia/
 - [ ] DevTools 面板（时间旅行时间轴 + SWR 缓存观察器）
 - [ ] 发布到 npm（`@utopia/*`，MIT）
 
+## Run
+
+```bash
+npm test
+```
+
 ## License
 
 MIT © 2026 DSH Frontend Utopia Contributors
